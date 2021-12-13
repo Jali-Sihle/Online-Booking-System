@@ -1,0 +1,172 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="OnlineBooking_SystemModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012.Azure" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="BOOKINGS">
+          <Key>
+            <PropertyRef Name="BKID" />
+          </Key>
+          <Property Name="BKID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="SUBJECT" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="MEETING_WITH" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="BOOKING_DATE" Type="date" Nullable="false" />
+          <Property Name="BOOKING_TIME" Type="time" Precision="0" Nullable="false" />
+          <Property Name="CLIENT_ID" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="CLIENTS">
+          <Key>
+            <PropertyRef Name="CLIENT_ID" />
+          </Key>
+          <Property Name="CLIENT_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="FIRST_NAME" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="LAST_NAME" Type="varchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="USERS">
+          <Key>
+            <PropertyRef Name="UID" />
+          </Key>
+          <Property Name="EMAIL_ADDRESS" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="USERNAME" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="PASSWORD" Type="varchar" MaxLength="100" />
+          <Property Name="UID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+        </EntityType>
+        <Association Name="FK__BOOKINGS__CLIENT__619B8048">
+          <End Role="CLIENTS" Type="Self.CLIENTS" Multiplicity="1" />
+          <End Role="BOOKINGS" Type="Self.BOOKINGS" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CLIENTS">
+              <PropertyRef Name="CLIENT_ID" />
+            </Principal>
+            <Dependent Role="BOOKINGS">
+              <PropertyRef Name="CLIENT_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="OnlineBooking_SystemModelStoreContainer">
+          <EntitySet Name="BOOKINGS" EntityType="Self.BOOKINGS" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="CLIENTS" EntityType="Self.CLIENTS" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="USERS" EntityType="Self.USERS" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK__BOOKINGS__CLIENT__619B8048" Association="Self.FK__BOOKINGS__CLIENT__619B8048">
+            <End Role="CLIENTS" EntitySet="CLIENTS" />
+            <End Role="BOOKINGS" EntitySet="BOOKINGS" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="OnlineBooking_SystemModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityContainer Name="OnlineBooking_SystemEntities1" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="BOOKINGS" EntityType="OnlineBooking_SystemModel.BOOKING" />
+          <EntitySet Name="CLIENTS" EntityType="OnlineBooking_SystemModel.CLIENT" />
+          <EntitySet Name="USERS" EntityType="OnlineBooking_SystemModel.USER" />
+          <AssociationSet Name="FK__BOOKINGS__CLIENT__619B8048" Association="OnlineBooking_SystemModel.FK__BOOKINGS__CLIENT__619B8048">
+            <End Role="CLIENT" EntitySet="CLIENTS" />
+            <End Role="BOOKING" EntitySet="BOOKINGS" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="BOOKING">
+          <Key>
+            <PropertyRef Name="BKID" />
+          </Key>
+          <Property Name="BKID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="SUBJECT" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="MEETING_WITH" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="BOOKING_DATE" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="BOOKING_TIME" Type="Time" Nullable="false" Precision="0" />
+          <Property Name="CLIENT_ID" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="CLIENT" Relationship="OnlineBooking_SystemModel.FK__BOOKINGS__CLIENT__619B8048" FromRole="BOOKING" ToRole="CLIENT" />
+        </EntityType>
+        <EntityType Name="CLIENT">
+          <Key>
+            <PropertyRef Name="CLIENT_ID" />
+          </Key>
+          <Property Name="CLIENT_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="FIRST_NAME" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="LAST_NAME" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="BOOKINGS" Relationship="OnlineBooking_SystemModel.FK__BOOKINGS__CLIENT__619B8048" FromRole="CLIENT" ToRole="BOOKING" />
+        </EntityType>
+        <EntityType Name="USER">
+          <Key>
+            <PropertyRef Name="UID" />
+          </Key>
+          <Property Name="EMAIL_ADDRESS" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="USERNAME" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="PASSWORD" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="UID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+        </EntityType>
+        <Association Name="FK__BOOKINGS__CLIENT__619B8048">
+          <End Type="OnlineBooking_SystemModel.CLIENT" Role="CLIENT" Multiplicity="1" />
+          <End Type="OnlineBooking_SystemModel.BOOKING" Role="BOOKING" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CLIENT">
+              <PropertyRef Name="CLIENT_ID" />
+            </Principal>
+            <Dependent Role="BOOKING">
+              <PropertyRef Name="CLIENT_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="OnlineBooking_SystemModelStoreContainer" CdmEntityContainer="OnlineBooking_SystemEntities1">
+          <EntitySetMapping Name="BOOKINGS">
+            <EntityTypeMapping TypeName="OnlineBooking_SystemModel.BOOKING">
+              <MappingFragment StoreEntitySet="BOOKINGS">
+                <ScalarProperty Name="CLIENT_ID" ColumnName="CLIENT_ID" />
+                <ScalarProperty Name="BOOKING_TIME" ColumnName="BOOKING_TIME" />
+                <ScalarProperty Name="BOOKING_DATE" ColumnName="BOOKING_DATE" />
+                <ScalarProperty Name="MEETING_WITH" ColumnName="MEETING_WITH" />
+                <ScalarProperty Name="SUBJECT" ColumnName="SUBJECT" />
+                <ScalarProperty Name="BKID" ColumnName="BKID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="CLIENTS">
+            <EntityTypeMapping TypeName="OnlineBooking_SystemModel.CLIENT">
+              <MappingFragment StoreEntitySet="CLIENTS">
+                <ScalarProperty Name="LAST_NAME" ColumnName="LAST_NAME" />
+                <ScalarProperty Name="FIRST_NAME" ColumnName="FIRST_NAME" />
+                <ScalarProperty Name="CLIENT_ID" ColumnName="CLIENT_ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="USERS">
+            <EntityTypeMapping TypeName="OnlineBooking_SystemModel.USER">
+              <MappingFragment StoreEntitySet="USERS">
+                <ScalarProperty Name="UID" ColumnName="UID" />
+                <ScalarProperty Name="PASSWORD" ColumnName="PASSWORD" />
+                <ScalarProperty Name="USERNAME" ColumnName="USERNAME" />
+                <ScalarProperty Name="EMAIL_ADDRESS" ColumnName="EMAIL_ADDRESS" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

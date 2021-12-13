@@ -1,0 +1,308 @@
+﻿@model IEnumerable<Online_Booking_System_.Models.BOOKING>
+@{
+
+                Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>All Meetings</title>
+
+    <style>
+        .textbox {
+            width: 300px;
+        }
+
+        body {
+            border-radius: 10px;
+            
+        }
+
+        .card {
+            width: 400px;
+            border: none;
+            border-radius: 10px;
+            background-color: #fff;
+        }
+
+        .stats {
+            background: #f2f5f8 !important;
+            color: #000 !important
+        }
+
+        .articles {
+            font-size: 10px;
+            color: #a1aab9
+        }
+
+        .number1 {
+            font-weight: 500
+        }
+
+        .followers {
+            font-size: 10px;
+            color: #a1aab9
+        }
+
+        .number2 {
+            font-weight: 500
+        }
+
+        .rating {
+            font-size: 10px;
+            color: #a1aab9
+        }
+
+        .number3 {
+            font-weight: 500
+        }
+
+        button :hover {
+            background: #36304A;
+        }
+
+        .banner {
+            font-size: 50px;
+            color: #064579;
+            margin-top: 10px;
+            margin-left: 560px;
+        }
+
+        .sidenav {
+            width: 170px;
+            position: fixed;
+            z-index: 1;
+            top: 20px;
+            left: 10px;
+            background: #36304A;
+            overflow-x: hidden;
+            padding: 8px 0;
+            height: 600px;
+            border-radius: 21px;
+            margin-top: -15px;
+            overflow: hidden;
+        }
+
+            .sidenav a {
+                padding: 6px 8px 6px 16px;
+                text-decoration: none;
+                font-size: 20px;
+                color: #ffffff;
+                display: block;
+                margin-left: 25px;
+            }
+
+                .sidenav a:hover {
+                    color: #064579;
+                }
+
+        .main {
+            margin-left: 230px; /* Same width as the sidebar + left position in px */
+            font-size: 15px; /* Increased text to enable scrolling */
+            padding: 0px 10px;
+            margin-top: 80px;
+        }
+
+        .top-title {
+            font-size: 40px;
+            transform: translate(2px,-70px);
+            font-weight: bold;
+            color:white;
+            position:absolute;
+        }
+
+        table {
+            transform: translate(-13px,-55px);
+        }
+
+        .main .top-title span {
+            border: 5px solid #36304A;
+            border-radius: 20px;
+            padding: 5px;
+            background-color: #36304A;
+        }
+
+       
+    </style>
+    <!--===============================================================================================-->
+    <link rel="icon" type="image/png" href="~/icon.PNG" />
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="~/Booking_list/vendor/bootstrap/css/bootstrap.min.css">
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="~/Booking_list/fonts/font-awesome-4.7.0/css/font-awesome.min.css">
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="~/Booking_list/vendor/animate/animate.css">
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="~/Booking_list/vendor/select2/select2.min.css">
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="~/Booking_list/vendor/perfect-scrollbar/perfect-scrollbar.css">
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="~/Booking_list/css/util.css">
+    <link rel="stylesheet" type="text/css" href="~/Booking_list/css/main.css">
+    <!--===============================================================================================-->
+</head>
+<body style="background-color: #bec4cf;">
+    <div class="sidenav">
+        <a href="">
+            <svg xmlns="http://www.w3.org/2000/svg" width="60" height="60" fill="currentColor" class="bi bi-arrow-clockwise" viewBox="0 0 16 16" style="padding-left:19px;" onclick="location.reload();">
+                <path fill-rule="evenodd" d="M8 3a5 5 0 1 0 4.546 2.914.5.5 0 0 1 .908-.417A6 6 0 1 1 8 2v1z" />
+                <path d="M8 4.466V.534a.25.25 0 0 1 .41-.192l2.36 1.966c.12.1.12.284 0 .384L8.41 4.658A.25.25 0 0 1 8 4.466z" />
+            </svg>
+        </a>
+        <a href="#about"></a>
+        <a href="#about"></a>
+        <a href="#about"></a>
+        <a href="#about"></a>
+        <a href="#about"></a>
+        <a href="#about"></a>
+        <a href="#about"></a>
+        <a href="#" onclick="@("window.location.href='" + @Url.Action("NewBooking", "Bookings")+ "'");">
+            <svg xmlns="http://www.w3.org/2000/svg" width="23" height="23" fill="currentColor" class="bi bi-calendar-plus" viewBox="0 0 16 16">
+                <path d="M8 7a.5.5 0 0 1 .5.5V9H10a.5.5 0 0 1 0 1H8.5v1.5a.5.5 0 0 1-1 0V10H6a.5.5 0 0 1 0-1h1.5V7.5A.5.5 0 0 1 8 7z" />
+                <path d="M3.5 0a.5.5 0 0 1 .5.5V1h8V.5a.5.5 0 0 1 1 0V1h1a2 2 0 0 1 2 2v11a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V3a2 2 0 0 1 2-2h1V.5a.5.5 0 0 1 .5-.5zM1 4v10a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V4H1z" />
+            </svg>   New
+        </a>
+        <a href="#about"></a>
+        <a href="#" onclick="@("window.location.href='" + @Url.Action("TodaySchedule", "Bookings")+ "'");">
+            <svg xmlns="http://www.w3.org/2000/svg" width="23" height="23" fill="currentColor" class="bi bi-house-fill" viewBox="0 0 16 16">
+                <path fill-rule="evenodd" d="m8 3.293 6 6V13.5a1.5 1.5 0 0 1-1.5 1.5h-9A1.5 1.5 0 0 1 2 13.5V9.293l6-6zm5-.793V6l-2-2V2.5a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 .5.5z" />
+                <path fill-rule="evenodd" d="M7.293 1.5a1 1 0 0 1 1.414 0l6.647 6.646a.5.5 0 0 1-.708.708L8 2.207 1.354 8.854a.5.5 0 1 1-.708-.708L7.293 1.5z" />
+            </svg>   Home
+        </a>
+        <a href="#about"></a>
+        <a href="#" style="font-size:18px" onclick="@("window.location.href='" + @Url.Action("AllMeetings", "Bookings")+ "'");">
+            <svg xmlns="http://www.w3.org/2000/svg" width="23" height="23" fill="currentColor" class="bi bi-book" viewBox="0 0 16 16">
+                <path d="M1 2.828c.885-.37 2.154-.769 3.388-.893 1.33-.134 2.458.063 3.112.752v9.746c-.935-.53-2.12-.603-3.213-.493-1.18.12-2.37.461-3.287.811V2.828zm7.5-.141c.654-.689 1.782-.886 3.112-.752 1.234.124 2.503.523 3.388.893v9.923c-.918-.35-2.107-.692-3.287-.81-1.094-.111-2.278-.039-3.213.492V2.687zM8 1.783C7.015.936 5.587.81 4.287.94c-1.514.153-3.042.672-3.994 1.105A.5.5 0 0 0 0 2.5v11a.5.5 0 0 0 .707.455c.882-.4 2.303-.881 3.68-1.02 1.409-.142 2.59.087 3.223.877a.5.5 0 0 0 .78 0c.633-.79 1.814-1.019 3.222-.877 1.378.139 2.8.62 3.681 1.02A.5.5 0 0 0 16 13.5v-11a.5.5 0 0 0-.293-.455c-.952-.433-2.48-.952-3.994-1.105C10.413.809 8.985.936 8 1.783z" />
+            </svg>   Schedule
+        </a>
+        <a href="#about"></a>
+        <a href="#" onclick="@("window.location.href='" + @Url.Action("SearchBooking", "Bookings")+ "'");">
+            <svg xmlns="http://www.w3.org/2000/svg" width="23" height="23" fill="currentColor" class="bi bi-search" viewBox="0 0 16 16">
+                <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z" />
+            </svg>   Search
+        </a>
+        <a href="#about"></a>
+        <a href="#" onclick="@("window.location.href='" + @Url.Action("AllClients", "Bookings")+ "'");">
+            <svg xmlns="http://www.w3.org/2000/svg" width="23" height="23" fill="currentColor" class="bi bi-people-fill" viewBox="0 0 16 16">
+                <path d="M7 14s-1 0-1-1 1-4 5-4 5 3 5 4-1 1-1 1H7zm4-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6z" />
+                <path fill-rule="evenodd" d="M5.216 14A2.238 2.238 0 0 1 5 13c0-1.355.68-2.75 1.936-3.72A6.325 6.325 0 0 0 5 9c-4 0-5 3-5 4s1 1 1 1h4.216z" />
+                <path d="M4.5 8a2.5 2.5 0 1 0 0-5 2.5 2.5 0 0 0 0 5z" />
+            </svg>  Clients
+        </a>
+        <a href="#about"></a>
+        <a href="#about"></a>
+        <a href="#about"></a>
+        <a href="#about"></a>
+        <a href="#about"></a>
+        <a href="#about"></a>
+        <a href="#about"></a>
+        <a href="#about"></a>
+        <a href="#about"></a>
+        <a href="#" onclick="@("window.location.href='" + @Url.Action("Login", "Bookings")+ "'");">
+            <svg xmlns="http://www.w3.org/2000/svg" width="23" height="23" fill="currentColor" class="bi bi-box-arrow-left" viewBox="0 0 16 16" style="padding-left:-10px;">
+                <path fill-rule="evenodd" d="M6 12.5a.5.5 0 0 0 .5.5h8a.5.5 0 0 0 .5-.5v-9a.5.5 0 0 0-.5-.5h-8a.5.5 0 0 0-.5.5v2a.5.5 0 0 1-1 0v-2A1.5 1.5 0 0 1 6.5 2h8A1.5 1.5 0 0 1 16 3.5v9a1.5 1.5 0 0 1-1.5 1.5h-8A1.5 1.5 0 0 1 5 12.5v-2a.5.5 0 0 1 1 0v2z" />
+                <path fill-rule="evenodd" d="M.146 8.354a.5.5 0 0 1 0-.708l3-3a.5.5 0 1 1 .708.708L1.707 7.5H10.5a.5.5 0 0 1 0 1H1.707l2.147 2.146a.5.5 0 0 1-.708.708l-3-3z" />
+            </svg>    Log Out
+        </a>
+    </div>
+    <div class="main">
+        <div class="top-title">
+            <span>Schedule </span><span class="clock" style="margin-left:280px;font-size:29px;margin-top:28px;">@DateTime.Now.ToString("yyyy-MM-dd")</span><span class="currtime" style="margin-left:290px;font-size:29px;margin-top:28px;">@DateTime.Now.TimeOfDay.ToString("hh\\:mm")</span>
+        </div>
+        <div class="limiter">
+            <div class="container-table100" style="background:none">
+                <div class="wrap-table100" >
+                    <div class="table100" >
+                        <table >
+                            <thead >
+                                <tr class="table100-head" >
+                                    <th class="column1" style="font-size:14px" >
+                                        @Html.DisplayNameFor(model => model.SUBJECT)
+                                    </th>
+                                    <th class="column2" style="font-size:14px">
+                                        @Html.DisplayNameFor(model => model.MEETING_WITH)
+                                    </th>
+                                    <th class="column3" style="font-size:14px">
+                                        @Html.DisplayNameFor(model => model.BOOKING_DATE)
+                                    </th>
+                                    <th class="column4" style="font-size:14px">
+                                        @Html.DisplayNameFor(model => model.BOOKING_TIME)
+                                    </th>
+                                    <th class="column1" style="font-size:14px">
+                                        @Html.DisplayNameFor(model => model.CLIENT.FIRST_NAME)
+                                    </th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach (var item in Model)
+                                {
+                                    <tr onclick="@("window.location.href='" + @Url.Action("BookingDetail", "Bookings",new { id = item.BKID }) + "'");">
+                                        <td class="column1" style="font-size:14px">
+                                            @Html.DisplayFor(modelItem => item.SUBJECT)
+                                        </td>
+                                        <td class="column2" style="font-size:14px">
+                                            @Html.DisplayFor(modelItem => item.MEETING_WITH)
+                                        </td>
+                                        <td class="column3" style="font-size:14px">
+                                            @Html.DisplayFor(modelItem => item.BOOKING_DATE)
+                                        </td>
+                                        <td class="column4" style="font-size:14px">
+                                            @Html.DisplayFor(modelItem => item.BOOKING_TIME)
+                                        </td>
+                                        <td class="column1" style="font-size:14px">
+                                            @Html.DisplayFor(modelItem => item.CLIENT.FIRST_NAME)
+                                        </td>
+                                    </tr>
+                                }
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+    <script>
+        function GetTime() {
+            var time = new Date();
+            var hr = time.getHours();
+            var min = time.getMinutes();
+            //var day = time.getDay(time.getDate());
+            //var dayn = time.toLocaleString("default", { weekday: "long" })
+
+            if (hr <= 12) {
+                if (min < 10) {
+                    document.getElementsByClassName("currtime").innerHTML = hr + " : " + "0" + min + " " + "AM";
+                } else {
+                    document.getElementByClassName("currtime").innerHTML = hr + " : " + min + " " + "AM";
+                }
+                //window.alert('Good Morning !');
+            } else {
+                if (min < 10) {
+                    document.getElementByClassName("currtime").innerHTML = hr + " : " + "0" + min + " " + "PM";
+                } else {
+                    document.getElementByClassName("currtime").innerHTML = hr + " : " + min + " " + "PM";
+                }
+
+                //window.alert('Good Afternoon !')
+            }
+            window.addEventListener("load", GetTime, false);
+            setInterval(GetTime, 1000);
+    </script>
+    <!--===============================================================================================-->
+    <script src="~/Booking_list/vendor/jquery/jquery-3.2.1.min.js"></script>
+    <!--===============================================================================================-->
+    <script src="~/Booking_list/vendor/bootstrap/js/popper.js"></script>
+    <script src="~/Booking_list/vendor/bootstrap/js/bootstrap.min.js"></script>
+    <!--===============================================================================================-->
+    <script src="~/Booking_list/vendor/select2/select2.min.js"></script>
+    <!--===============================================================================================-->
+    <script src="~/Booking_list/js/main.js"></script>
+
+</body>
+</html>
